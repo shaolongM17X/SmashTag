@@ -9,7 +9,7 @@
 import UIKit
 import Twitter
 
-class TweetTableViewController: UITableViewController {
+class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 	
 	private struct StoryBoard {
 		static let TweetCellIdentifier = "Tweet"
@@ -39,7 +39,7 @@ class TweetTableViewController: UITableViewController {
 	private var lastTwitterRequest: Twitter.Request?
 	private func searchForTweets() {
 		if let request = twitterRequest {
-			lastTwitterRequest = Request
+			lastTwitterRequest = request
 			request.fetchTweets { [weak weakSelf = self] newTweets in
 				dispatch_async(dispatch_get_main_queue()) {
 					if request == weakSelf?.lastTwitterRequest {
@@ -57,7 +57,7 @@ class TweetTableViewController: UITableViewController {
 		// adjust the height automatically
 		tableView.estimatedRowHeight = tableView.rowHeight
 		tableView.rowHeight = UITableViewAutomaticDimension
-		searchText = "#Columbia"
+		searchText = "#Stanford"
 	}
 
 	
@@ -74,7 +74,7 @@ class TweetTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.TweetCellIdentifier, forIndexPath: indexPath)
 		let tweet = tweets[indexPath.section][indexPath.row]
-		if let tweetCell as? TweetTableViewCell {
+		if let tweetCell = cell as? TweetTableViewCell {
 			tweetCell.tweet = tweet
 		}
 
@@ -82,6 +82,18 @@ class TweetTableViewController: UITableViewController {
 
         return cell
     }
+	@IBOutlet weak var searchTextField: UITextField! {
+		didSet {
+			searchTextField.delegate = self
+			searchTextField.text = searchText
+		}
+	}
+	
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		textField.resignFirstResponder()
+		searchText = textField.text
+		return true
+	}
 
 
     /*

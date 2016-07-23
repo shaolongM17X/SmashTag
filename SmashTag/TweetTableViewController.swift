@@ -13,6 +13,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 	
 	private struct StoryBoard {
 		static let TweetCellIdentifier = "Tweet"
+		static let TweetDetailSegueIdentifier = "Tweet Detail"
 	}
 	
 	var tweets = [Array<Tweet>]() {
@@ -131,14 +132,26 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+       // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+		if segue.identifier == StoryBoard.TweetDetailSegueIdentifier {
+			if let tweetCell = sender as? TweetTableViewCell {
+				if let destinationVc = segue.destinationViewController.contentViewController as? TweetDetailTableViewController {
+					destinationVc.tweet = tweetCell.tweet
+				}
+			}
+		}
+	}
+ 
 
+}
+
+extension UIViewController {
+	var contentViewController: UIViewController {
+		if let navcon = self as? UINavigationController {
+			return navcon.visibleViewController ?? self
+		} else {
+			return self
+		}
+	}
 }

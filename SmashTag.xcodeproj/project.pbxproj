@@ -14,6 +14,7 @@
 		14DB14D81D416D4600C13FC1 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14DB14D71D416D4600C13FC1 /* Twitter.framework */; };
 		14DB14DA1D41705D00C13FC1 /* TweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DB14D91D41705D00C13FC1 /* TweetTableViewController.swift */; };
 		14DB14DC1D417DF800C13FC1 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DB14DB1D417DF800C13FC1 /* TweetTableViewCell.swift */; };
+		14DB14DE1D42E48200C13FC1 /* TweetDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DB14DD1D42E48200C13FC1 /* TweetDetailTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		14DB14D71D416D4600C13FC1 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = "../../Library/Developer/Xcode/DerivedData/SmashTagTwitterWorkspace-agecrkmphgwnunbnuhpjtqhkwlsr/Build/Products/Debug-iphoneos/Twitter.framework"; sourceTree = "<group>"; };
 		14DB14D91D41705D00C13FC1 /* TweetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewController.swift; sourceTree = "<group>"; };
 		14DB14DB1D417DF800C13FC1 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
+		14DB14DD1D42E48200C13FC1 /* TweetDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				143F24911D416C99005758DE /* Supporting Files */,
 				143F24831D416C89005758DE /* Main.storyboard */,
+				14DB14DD1D42E48200C13FC1 /* TweetDetailTableViewController.swift */,
 				14DB14DB1D417DF800C13FC1 /* TweetTableViewCell.swift */,
 				14DB14D91D41705D00C13FC1 /* TweetTableViewController.swift */,
 			);
@@ -111,6 +114,7 @@
 				TargetAttributes = {
 					143F247B1D416C89005758DE = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = WRTFHNNEQ5;
 					};
 				};
 			};
@@ -152,6 +156,7 @@
 			files = (
 				143F24801D416C89005758DE /* AppDelegate.swift in Sources */,
 				14DB14DA1D41705D00C13FC1 /* TweetTableViewController.swift in Sources */,
+				14DB14DE1D42E48200C13FC1 /* TweetDetailTableViewController.swift in Sources */,
 				14DB14DC1D417DF800C13FC1 /* TweetTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,10 +270,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SmashTag/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = shaolongm17x.SmashTag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -276,10 +284,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SmashTag/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = shaolongm17x.SmashTag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

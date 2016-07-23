@@ -11,6 +11,11 @@ import Twitter
 
 class TweetDetailTableViewController: UITableViewController {
 	
+	private struct StoryBoard {
+		static let TweetKeywordCellIdentifier = "Keyword Cell"
+		static let TweetImageCellIdentifier = "Image Cell"
+	}
+	
 	// internal data structure
 	private var mentions = [Mentions]()
 	
@@ -25,7 +30,7 @@ class TweetDetailTableViewController: UITableViewController {
 	
 	private enum MentionItem: CustomDebugStringConvertible {
 		case Keyword(String, String)
-		case Image(NSURL, Double, String)
+		case Image(NSURL, CGFloat, String)
 		
 		var debugDescription: String {
 			switch self {
@@ -41,12 +46,12 @@ class TweetDetailTableViewController: UITableViewController {
 	var tweet: Twitter.Tweet? {
 		didSet {
 			if let images = tweet?.media where images.count > 0 {
-				mentions.append(Mentions(name: "Image", data: images.map { MentionItem.Image($0.url, $0.aspectRatio, $0.description)}))
+				mentions.append(Mentions(name: "Image", data: images.map { MentionItem.Image($0.url, CGFloat($0.aspectRatio), $0.description)}))
 			}
 			prepareMentions("Hashtag", tweetMentions: tweet?.hashtags)
 			prepareMentions("Urls", tweetMentions: tweet?.urls)
 			prepareMentions("UserMentions", tweetMentions: tweet?.userMentions)
-			print(mentions)
+			title = "\(self.tweet!.user)"
 		}
 	}
 	
@@ -67,74 +72,49 @@ class TweetDetailTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 0
+        return mentions.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return mentions[section].data.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+		
+		let mention = mentions[indexPath.section].data[indexPath.row]
+		switch mention {
+		case .Image(let url, _, _):
+			let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.TweetImageCellIdentifier, forIndexPath: indexPath) as! ImageTableViewCell
+			cell.imageURL = url
+			return cell
+		case .Keyword(let str, _):
+			let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoard.TweetKeywordCellIdentifier, forIndexPath: indexPath)
+			cell.textLabel?.text = str
+			return cell
+		}
     }
-    */
+	
+	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return mentions[section].name
+	}
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		let mention = mentions[indexPath.section].data[indexPath.row]
+		switch mention {
+		case .Image(_, let ratio, _):
+			return tableView.bounds.width / ratio
+		default:
+			return UITableViewAutomaticDimension
+		}
+	}
+	
+	// this is used to prevent the fact that after rotation, the estimated height will be wrong
+	override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+		tableView.reloadData()
+	}
 }

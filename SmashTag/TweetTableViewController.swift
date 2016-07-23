@@ -13,7 +13,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 	
 	private struct StoryBoard {
 		static let TweetCellIdentifier = "Tweet"
-		static let TweetDetailSegueIdentifier = "Tweet Detail"
+		static let TweetDetailSegueIdentifier = "Tweet Detail Segue"
 	}
 	
 	var tweets = [Array<Tweet>]() {

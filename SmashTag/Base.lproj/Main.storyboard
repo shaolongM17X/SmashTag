@@ -81,7 +81,7 @@
                                     <outlet property="tweetProfileImage" destination="ce7-KP-MsZ" id="h0H-Oj-yyU"/>
                                     <outlet property="tweetScreenNameLabel" destination="QeZ-ot-UKQ" id="fuG-Ag-5EB"/>
                                     <outlet property="tweetTextLabel" destination="Xfa-LM-UrC" id="1GH-TB-xAc"/>
-                                    <segue destination="Qrz-c5-72j" kind="show" identifier="Tweet Detail" id="HVm-KL-17E"/>
+                                    <segue destination="Qrz-c5-72j" kind="show" identifier="Tweet Detail Segue" id="HVm-KL-17E"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -108,13 +108,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="105" id="8hu-Ra-Ye8">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Keyword Cell" rowHeight="105" id="8hu-Ra-Ye8">
                                 <rect key="frame" x="0.0" y="92" width="600" height="105"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8hu-Ra-Ye8" id="qKI-zW-JcL">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Image Cell" rowHeight="170" id="KaB-cE-C1H" customClass="ImageTableViewCell" customModule="SmashTag" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="197" width="600" height="170"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KaB-cE-C1H" id="BVx-cp-vsJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="169.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a1v-zv-XeZ">
+                                            <rect key="frame" x="8" y="8" width="584" height="153.5"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="a1v-zv-XeZ" firstAttribute="leading" secondItem="BVx-cp-vsJ" secondAttribute="leadingMargin" id="087-aH-WB9"/>
+                                        <constraint firstItem="a1v-zv-XeZ" firstAttribute="top" secondItem="BVx-cp-vsJ" secondAttribute="topMargin" id="AOg-gJ-B1D"/>
+                                        <constraint firstItem="a1v-zv-XeZ" firstAttribute="trailing" secondItem="BVx-cp-vsJ" secondAttribute="trailingMargin" id="GIp-Tr-xs4"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="a1v-zv-XeZ" secondAttribute="bottom" id="vtB-0S-Fbc"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="tweetImage" destination="a1v-zv-XeZ" id="csA-b0-wQR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>

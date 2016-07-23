@@ -15,6 +15,7 @@
 		14DB14DA1D41705D00C13FC1 /* TweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DB14D91D41705D00C13FC1 /* TweetTableViewController.swift */; };
 		14DB14DC1D417DF800C13FC1 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DB14DB1D417DF800C13FC1 /* TweetTableViewCell.swift */; };
 		14DB14DE1D42E48200C13FC1 /* TweetDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DB14DD1D42E48200C13FC1 /* TweetDetailTableViewController.swift */; };
+		14DB14E21D432CB900C13FC1 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DB14E11D432CB900C13FC1 /* ImageTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		14DB14D91D41705D00C13FC1 /* TweetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewController.swift; sourceTree = "<group>"; };
 		14DB14DB1D417DF800C13FC1 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		14DB14DD1D42E48200C13FC1 /* TweetDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailTableViewController.swift; sourceTree = "<group>"; };
+		14DB14E11D432CB900C13FC1 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				143F24911D416C99005758DE /* Supporting Files */,
 				143F24831D416C89005758DE /* Main.storyboard */,
+				14DB14E11D432CB900C13FC1 /* ImageTableViewCell.swift */,
 				14DB14DD1D42E48200C13FC1 /* TweetDetailTableViewController.swift */,
 				14DB14DB1D417DF800C13FC1 /* TweetTableViewCell.swift */,
 				14DB14D91D41705D00C13FC1 /* TweetTableViewController.swift */,
@@ -156,6 +159,7 @@
 			files = (
 				143F24801D416C89005758DE /* AppDelegate.swift in Sources */,
 				14DB14DA1D41705D00C13FC1 /* TweetTableViewController.swift in Sources */,
+				14DB14E21D432CB900C13FC1 /* ImageTableViewCell.swift in Sources */,
 				14DB14DE1D42E48200C13FC1 /* TweetDetailTableViewController.swift in Sources */,
 				14DB14DC1D417DF800C13FC1 /* TweetTableViewCell.swift in Sources */,
 			);

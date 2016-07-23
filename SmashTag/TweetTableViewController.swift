@@ -58,7 +58,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 		// adjust the height automatically
 		tableView.estimatedRowHeight = tableView.rowHeight
 		tableView.rowHeight = UITableViewAutomaticDimension
-		searchText = "#Stanford"
 	}
 
 	

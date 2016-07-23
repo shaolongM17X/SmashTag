@@ -14,6 +14,7 @@ class TweetDetailTableViewController: UITableViewController {
 	private struct StoryBoard {
 		static let TweetKeywordCellIdentifier = "Keyword Cell"
 		static let TweetImageCellIdentifier = "Image Cell"
+		static let KeywordSearchIdentifier = "Search KeyWord"
 	}
 	
 	// internal data structure
@@ -110,6 +111,32 @@ class TweetDetailTableViewController: UITableViewController {
 			return tableView.bounds.width / ratio
 		default:
 			return UITableViewAutomaticDimension
+		}
+	}
+	
+	// this is used to detect user touch, and do segue if necessary
+	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		let mention = mentions[indexPath.section].data[indexPath.row]
+		switch mention {
+		case .Keyword(let str, _):
+			performSegueWithIdentifier(StoryBoard.KeywordSearchIdentifier, sender: str)
+		default:
+			break
+		}
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == StoryBoard.KeywordSearchIdentifier {
+			if let keyword = sender as? String {
+				if keyword.hasPrefix("http") {
+					print("sb")
+				} else {
+					if let destinationVc = segue.destinationViewController as? TweetTableViewController {
+						print(keyword)
+						destinationVc.searchText = keyword
+					}
+				}
+			}
 		}
 	}
 	

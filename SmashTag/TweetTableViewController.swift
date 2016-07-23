@@ -92,7 +92,9 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
 		textField.resignFirstResponder()
-		searchText = textField.text
+		if textField.text != "" {
+			searchText = textField.text
+		}
 		return true
 	}
 

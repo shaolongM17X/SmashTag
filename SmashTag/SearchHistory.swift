@@ -35,5 +35,10 @@ class SearchHistory {
 		currentRecords.insert(str!, atIndex: 0)
 		savedRecords = currentRecords
 	}
-	
+
+	func removeAtIndex(index: Int) {
+		var currentRecords = savedRecords
+		currentRecords.removeAtIndex(index)
+		savedRecords = currentRecords
+	}
 }

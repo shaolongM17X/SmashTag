@@ -19,7 +19,17 @@ class RecentSearchTableViewController: UITableViewController {
         super.viewDidLoad()
 		tableView.estimatedRowHeight = tableView.rowHeight
 		tableView.rowHeight = UITableViewAutomaticDimension
+		
+		// add edit button
+		navigationItem.leftBarButtonItem = editButtonItem()
     }
+	
+	// used to delete a selected row
+	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+		SearchHistory().removeAtIndex(indexPath.row)
+		tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+	}
+	
 	
 	
 	override func viewWillAppear(animated: Bool) {

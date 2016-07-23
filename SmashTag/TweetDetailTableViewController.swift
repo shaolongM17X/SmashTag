@@ -15,6 +15,7 @@ class TweetDetailTableViewController: UITableViewController {
 		static let TweetKeywordCellIdentifier = "Keyword Cell"
 		static let TweetImageCellIdentifier = "Image Cell"
 		static let KeywordSearchIdentifier = "Search KeyWord"
+		static let ShowTweetImageDetailIdentifier = "Show Image"
 	}
 	
 	// internal data structure
@@ -119,7 +120,11 @@ class TweetDetailTableViewController: UITableViewController {
 		let mention = mentions[indexPath.section].data[indexPath.row]
 		switch mention {
 		case .Keyword(let str, _):
-			performSegueWithIdentifier(StoryBoard.KeywordSearchIdentifier, sender: str)
+			if mentions[indexPath.section].name == "Urls" {
+				UIApplication.sharedApplication().openURL(NSURL(string: str)!)
+			} else {
+				performSegueWithIdentifier(StoryBoard.KeywordSearchIdentifier, sender: str)
+			}
 		default:
 			break
 		}
@@ -128,13 +133,16 @@ class TweetDetailTableViewController: UITableViewController {
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == StoryBoard.KeywordSearchIdentifier {
 			if let keyword = sender as? String {
-				if keyword.hasPrefix("http") {
-					print("sb")
-				} else {
-					if let destinationVc = segue.destinationViewController as? TweetTableViewController {
-						print(keyword)
-						destinationVc.searchText = keyword
-					}
+				if let destinationVc = segue.destinationViewController as? TweetTableViewController {
+					destinationVc.searchText = keyword
+					SearchHistory().add(keyword)
+				}
+			}
+		}
+		if segue.identifier == StoryBoard.ShowTweetImageDetailIdentifier {
+			if let imageCell = sender as? ImageTableViewCell {
+				if let destinationVc = segue.destinationViewController as? ImageDetailViewController {
+					destinationVc.image = imageCell.tweetImage.image!
 				}
 			}
 		}

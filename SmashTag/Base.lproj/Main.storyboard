@@ -90,7 +90,16 @@
                             <outlet property="delegate" destination="qvu-u6-EZv" id="TmA-cg-ocS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="j5l-vo-4vT"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="j5l-vo-4vT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="sOU-UF-sWt">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="bNy-TH-O69" kind="show" identifier="Search Images" id="bmX-Pr-efK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchTextField" destination="Qef-0l-Irh" id="Oxn-i8-goe"/>
                     </connections>
@@ -102,7 +111,6 @@
         <!--Recent Searches-->
         <scene sceneID="8pL-Ws-5cE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="D7j-Wj-zBS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="lLF-Pq-3Fi" customClass="RecentSearchTableViewController" customModule="SmashTag" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="uPD-1S-PJP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -124,6 +132,7 @@
                         <segue destination="qvu-u6-EZv" kind="show" identifier="From Recent Search To Tweets" id="A4G-cn-nHu"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D7j-Wj-zBS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1491" y="879"/>
         </scene>
@@ -233,6 +242,54 @@
             </objects>
             <point key="canvasLocation" x="2269" y="12"/>
         </scene>
+        <!--Image Collection View Controller-->
+        <scene sceneID="2zv-BL-nEX">
+            <objects>
+                <collectionViewController id="bNy-TH-O69" customClass="ImageCollectionViewController" customModule="SmashTag" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lAx-1T-5Sf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8QJ-fw-ZuF">
+                            <size key="itemSize" width="279" height="275"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Image Cell For Collection" id="po6-km-Uw2" customClass="ImageCollectionViewCell" customModule="SmashTag" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="279" height="275"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="279" height="275"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IL5-Us-GAk">
+                                            <rect key="frame" x="8" y="8" width="263" height="259"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="IL5-Us-GAk" firstAttribute="leading" secondItem="po6-km-Uw2" secondAttribute="leadingMargin" id="FCU-T3-F3h"/>
+                                    <constraint firstItem="IL5-Us-GAk" firstAttribute="bottom" secondItem="po6-km-Uw2" secondAttribute="bottomMargin" id="UWl-nS-B2r"/>
+                                    <constraint firstItem="IL5-Us-GAk" firstAttribute="trailing" secondItem="po6-km-Uw2" secondAttribute="trailingMargin" id="qJA-gD-43X"/>
+                                    <constraint firstItem="IL5-Us-GAk" firstAttribute="top" secondItem="po6-km-Uw2" secondAttribute="topMargin" id="wxp-Ks-Imq"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="IL5-Us-GAk" id="jak-ct-qbi"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="bNy-TH-O69" id="dg0-Sx-9HA"/>
+                            <outlet property="delegate" destination="bNy-TH-O69" id="mNL-TS-eyH"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yjq-Rv-Jiu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1491" y="-764"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="dfW-f5-zO8">
             <objects>
@@ -273,6 +330,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="A4G-cn-nHu"/>
+        <segue reference="7HZ-5y-qd6"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,6 +14,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 	private struct StoryBoard {
 		static let TweetCellIdentifier = "Tweet"
 		static let TweetDetailSegueIdentifier = "Tweet Detail Segue"
+		static let SearchImagesWithCurrentSearchTextIdentifier = "Search Images"
 	}
 	
 	var tweets = [Array<Tweet>]() {
@@ -143,6 +144,18 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 				}
 			}
 		}
+		if segue.identifier == StoryBoard.SearchImagesWithCurrentSearchTextIdentifier {
+			if let destinationVc = segue.destinationViewController as? ImageCollectionViewController {
+				destinationVc.tweetsGroup = tweets
+			}
+		}
+	}
+	
+	override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+		if identifier == StoryBoard.SearchImagesWithCurrentSearchTextIdentifier && searchText == nil {
+			return false
+		}
+		return true
 	}
  
 

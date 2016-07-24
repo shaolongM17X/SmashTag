@@ -9,17 +9,18 @@
 import UIKit
 import Twitter
 
-class ImageCollectionViewController: UICollectionViewController {
+class ImageCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
 	private struct StoryBoard {
 		static let ImageCollectionCellIdentifier = "Image Cell For Collection"
+		static let ShowTweetDetailIdentifier = "Show Tweet Detail From Image"
 	}
 	
 	// internal Data Structure
 	private struct TweetImage: CustomDebugStringConvertible {
 		var tweet: Twitter.Tweet
 		var url: NSURL
-		var aspectRatio: Double
+		var aspectRatio: CGFloat
 		
 		var debugDescription: String {
 			return "\(tweet) with url \(url) and aspectRatio \(aspectRatio)"
@@ -31,7 +32,7 @@ class ImageCollectionViewController: UICollectionViewController {
 		for tweets in tweetsGroup! {
 			for tweet in tweets {
 				for media in tweet.media {
-					tweetImages.append(TweetImage(tweet: tweet, url: media.url, aspectRatio: media.aspectRatio))
+					tweetImages.append(TweetImage(tweet: tweet, url: media.url, aspectRatio: CGFloat(media.aspectRatio)))
 				}
 			}
 		}
@@ -82,15 +83,32 @@ class ImageCollectionViewController: UICollectionViewController {
     
         return cell
     }
+	
+	// used to adjust the size of the cell
+	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+		let image = tweetImages[indexPath.row]
+		return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.width / image.aspectRatio)
+	}
+	
+	// this is used to prevent the fact that after rotation, the estimated height will be wrong
+	override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+		collectionView!.reloadData()
+	}
+	
+	override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+		performSegueWithIdentifier(StoryBoard.ShowTweetDetailIdentifier, sender: tweetImages[indexPath.row].tweet)
+	}
 
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == StoryBoard.ShowTweetDetailIdentifier {
+			if let destinationVc = segue.destinationViewController as? TweetDetailTableViewController {
+				if let tweet = sender as? Tweet {
+					destinationVc.tweet = tweet
+				}
+			}
+		}
+	}
+	
 
     /*
     // Uncomment this method to specify if the specified item should be selected

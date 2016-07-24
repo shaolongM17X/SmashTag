@@ -15,14 +15,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <textField key="tableHeaderView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Twitter Search Text" textAlignment="natural" minimumFontSize="17" id="Qef-0l-Irh">
-                            <rect key="frame" x="0.0" y="64" width="600" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Tweet" rowHeight="117" id="ARL-5Y-dfQ" customClass="TweetTableViewCell" customModule="SmashTag" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="122" width="600" height="117"/>
+                                <rect key="frame" x="0.0" y="58" width="600" height="117"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ARL-5Y-dfQ" id="beX-ky-Z1h">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="116.5"/>
@@ -196,7 +196,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Keyword Cell" rowHeight="105" id="8hu-Ra-Ye8">
-                                <rect key="frame" x="0.0" y="92" width="600" height="105"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="105"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8hu-Ra-Ye8" id="qKI-zW-JcL">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
@@ -204,7 +204,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Image Cell" rowHeight="170" id="KaB-cE-C1H" customClass="ImageTableViewCell" customModule="SmashTag" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="197" width="600" height="170"/>
+                                <rect key="frame" x="0.0" y="133" width="600" height="170"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KaB-cE-C1H" id="BVx-cp-vsJ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="169.5"/>
@@ -240,7 +240,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uv7-T6-bWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2269" y="12"/>
+            <point key="canvasLocation" x="2158" y="12"/>
         </scene>
         <!--Image Collection View Controller-->
         <scene sceneID="2zv-BL-nEX">
@@ -249,6 +249,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lAx-1T-5Sf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8QJ-fw-ZuF">
                             <size key="itemSize" width="279" height="275"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -257,7 +258,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Image Cell For Collection" id="po6-km-Uw2" customClass="ImageCollectionViewCell" customModule="SmashTag" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="279" height="275"/>
+                                <rect key="frame" x="0.0" y="0.0" width="279" height="275"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="279" height="275"/>
@@ -285,6 +286,9 @@
                             <outlet property="delegate" destination="bNy-TH-O69" id="mNL-TS-eyH"/>
                         </connections>
                     </collectionView>
+                    <connections>
+                        <segue destination="Qrz-c5-72j" kind="show" identifier="Show Tweet Detail From Image" id="yHE-MU-ocd"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yjq-Rv-Jiu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -330,6 +334,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7HZ-5y-qd6"/>
+        <segue reference="yHE-MU-ocd"/>
+        <segue reference="msv-Gp-fJc"/>
     </inferredMetricsTieBreakers>
 </document>

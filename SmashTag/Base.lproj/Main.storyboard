@@ -166,16 +166,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hjb-ga-HK4">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hjb-ga-HK4">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Hjb-ga-HK4" firstAttribute="top" secondItem="Rz2-1F-xvF" secondAttribute="top" id="Hi2-VH-P02"/>
-                            <constraint firstAttribute="trailing" secondItem="Hjb-ga-HK4" secondAttribute="trailing" id="X1N-2m-6xT"/>
-                            <constraint firstItem="Hjb-ga-HK4" firstAttribute="leading" secondItem="Rz2-1F-xvF" secondAttribute="leading" id="bZh-os-m2B"/>
-                            <constraint firstItem="Hjb-ga-HK4" firstAttribute="bottom" secondItem="5hD-f9-FzZ" secondAttribute="top" id="xFI-Li-2Um"/>
+                            <constraint firstItem="Hjb-ga-HK4" firstAttribute="top" secondItem="Rz2-1F-xvF" secondAttribute="top" id="7dl-dX-Op9"/>
+                            <constraint firstItem="Hjb-ga-HK4" firstAttribute="leading" secondItem="Rz2-1F-xvF" secondAttribute="leading" id="Aqp-nK-hHA"/>
+                            <constraint firstAttribute="trailing" secondItem="Hjb-ga-HK4" secondAttribute="trailing" id="buh-U9-7FE"/>
+                            <constraint firstAttribute="bottom" secondItem="Hjb-ga-HK4" secondAttribute="bottom" id="w6p-Hn-45a"/>
                         </constraints>
                     </view>
                     <connections>
@@ -211,14 +211,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a1v-zv-XeZ">
-                                            <rect key="frame" x="8" y="8" width="584" height="153.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="169.5"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="a1v-zv-XeZ" firstAttribute="leading" secondItem="BVx-cp-vsJ" secondAttribute="leadingMargin" id="087-aH-WB9"/>
-                                        <constraint firstItem="a1v-zv-XeZ" firstAttribute="top" secondItem="BVx-cp-vsJ" secondAttribute="topMargin" id="AOg-gJ-B1D"/>
-                                        <constraint firstItem="a1v-zv-XeZ" firstAttribute="trailing" secondItem="BVx-cp-vsJ" secondAttribute="trailingMargin" id="GIp-Tr-xs4"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="a1v-zv-XeZ" secondAttribute="bottom" id="vtB-0S-Fbc"/>
+                                        <constraint firstItem="a1v-zv-XeZ" firstAttribute="leading" secondItem="BVx-cp-vsJ" secondAttribute="leading" id="0iS-yK-vlS"/>
+                                        <constraint firstAttribute="trailing" secondItem="a1v-zv-XeZ" secondAttribute="trailing" id="6LP-vD-vEw"/>
+                                        <constraint firstItem="a1v-zv-XeZ" firstAttribute="centerY" secondItem="BVx-cp-vsJ" secondAttribute="centerY" id="MVy-kP-lN4"/>
+                                        <constraint firstItem="a1v-zv-XeZ" firstAttribute="top" secondItem="BVx-cp-vsJ" secondAttribute="top" id="VCm-xj-cX8"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

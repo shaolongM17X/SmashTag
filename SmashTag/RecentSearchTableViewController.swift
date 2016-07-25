@@ -28,28 +28,46 @@ class RecentSearchTableViewController: UITableViewController {
 	
 	// used to delete a selected row
 	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-		SearchHistory().removeAtIndex(indexPath.row)
-		tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+		
 		
 		// remove this entry from database
+		// first we remove tweets related to this search text
+		// next we remove all the mentions related to this search text
+
 		let cell = tableView.cellForRowAtIndexPath(indexPath)
 		let searchText = (cell?.textLabel?.text)!
-		let request = NSFetchRequest(entityName: "Tweet")
-		request.predicate = NSPredicate(format: "searchText = %@", searchText)
+		let predicateForSearchText = NSPredicate(format: "searchText = %@", searchText)
+		
+		let requestForTweet = NSFetchRequest(entityName: "Tweet")
+		requestForTweet.predicate = predicateForSearchText
+		
+		let requestForMention = NSFetchRequest(entityName: "Mention")
+		requestForMention.predicate = predicateForSearchText
+		
 		let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
-		managedObjectContext?.performBlockAndWait {
+		managedObjectContext?.performBlock {
 			
-			if let tweets = (try? managedObjectContext?.executeFetchRequest(request)) as? [Tweet] {
+			if let tweets = (try? managedObjectContext?.executeFetchRequest(requestForTweet)) as? [Tweet] {
 				for tweet in tweets {
 					managedObjectContext?.deleteObject(tweet)
 				}
 			}
+			if let mentions = (try? managedObjectContext?.executeFetchRequest(requestForMention)) as? [Mention] {
+				for mention in mentions {
+					managedObjectContext?.deleteObject(mention)
+				}
+			}
+			
+			
 			do {
 				try managedObjectContext?.save()
 			} catch let error {
 				print("Something is wrong during deletion. Error \(error)")
 			}
 		}
+		
+		SearchHistory().removeAtIndex(indexPath.row)
+		tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
 		
 	}
 	

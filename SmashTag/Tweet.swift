@@ -38,8 +38,4 @@ class Tweet: NSManagedObject {
 		}
 	}
 	
-	// when we delete a tweet, we have to clear all the mentions related to this tweet
-	override func prepareForDeletion() {
-		<#code#>
-	}
 }

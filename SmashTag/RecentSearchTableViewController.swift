@@ -71,7 +71,12 @@ class RecentSearchTableViewController: UITableViewController {
 		}
 		
 		if segue.identifier == StoryBoard.ShowMentionDetailsIdentifier {
-			
+			if let destinationVc = segue.destinationViewController as? MentionsTableViewController {
+				if let histMentionCell = sender as? UITableViewCell {
+					destinationVc.searchText = histMentionCell.textLabel?.text
+					destinationVc.managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
+				}
+			}
 		}
 	}
 	

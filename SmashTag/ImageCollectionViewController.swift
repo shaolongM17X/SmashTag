@@ -38,7 +38,7 @@ class ImageCollectionViewController: UICollectionViewController, UICollectionVie
 		}
 	}
 	
-	var tweetsGroup: [Array<Tweet>]? {
+	var tweetsGroup: [Array<Twitter.Tweet>]? {
 		didSet {
 			prepareInternalDataStructure()
 		}
@@ -102,7 +102,7 @@ class ImageCollectionViewController: UICollectionViewController, UICollectionVie
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == StoryBoard.ShowTweetDetailIdentifier {
 			if let destinationVc = segue.destinationViewController as? TweetDetailTableViewController {
-				if let tweet = sender as? Tweet {
+				if let tweet = sender as? Twitter.Tweet {
 					destinationVc.tweet = tweet
 				}
 			}

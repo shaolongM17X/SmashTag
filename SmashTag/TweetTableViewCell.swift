@@ -35,7 +35,7 @@ class TweetTableViewCell: UITableViewCell {
 		"UserMentionColor" : UIColor(netHex: 0x0084B4)
 	]
 	
-	private func setColorAttribute(str: NSMutableAttributedString, tag: String, arr: [Mention]) {
+	private func setColorAttribute(str: NSMutableAttributedString, tag: String, arr: [Twitter.Mention]) {
 		for item in arr {
 			if let color = fontColors[tag] {
 				str.addAttributes([NSForegroundColorAttributeName: color], range: item.nsrange)

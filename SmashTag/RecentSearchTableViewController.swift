@@ -13,6 +13,7 @@ class RecentSearchTableViewController: UITableViewController {
 	private struct StoryBoard {
 		static let SearchHistoryEntryIdentifier = "Search History Cell"
 		static let FromSearchHistoryToSearchTweetsIdentifier = "From Recent Search To Tweets"
+		static let ShowMentionDetailsIdentifier = "Show Mention Details"
 	}
 	
     override func viewDidLoad() {
@@ -67,6 +68,10 @@ class RecentSearchTableViewController: UITableViewController {
 					destinationVc.searchText = searchText
 				}
 			}
+		}
+		
+		if segue.identifier == StoryBoard.ShowMentionDetailsIdentifier {
+			
 		}
 	}
 	

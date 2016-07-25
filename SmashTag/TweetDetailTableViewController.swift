@@ -57,7 +57,7 @@ class TweetDetailTableViewController: UITableViewController {
 		}
 	}
 	
-	private func prepareMentions(name: String, tweetMentions: [Mention]?) {
+	private func prepareMentions(name: String, tweetMentions: [Twitter.Mention]?) {
 		if let arr = tweetMentions where arr.count > 0 {
 			mentions.append(Mentions(name: name, data: arr.map{MentionItem.Keyword($0.keyword, $0.description)}))
 		}

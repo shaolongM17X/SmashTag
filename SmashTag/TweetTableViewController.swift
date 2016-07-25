@@ -8,8 +8,11 @@
 
 import UIKit
 import Twitter
+import CoreData
 
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
+	
+	var managedObjectContext: NSManagedObjectContext? = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
 	
 	private struct StoryBoard {
 		static let TweetCellIdentifier = "Tweet"
@@ -17,7 +20,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 		static let SearchImagesWithCurrentSearchTextIdentifier = "Search Images"
 	}
 	
-	var tweets = [Array<Tweet>]() {
+	var tweets = [Array<Twitter.Tweet>]() {
 		didSet {
 			tableView.reloadData()
 		}
@@ -48,9 +51,23 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 					if request == weakSelf?.lastTwitterRequest {
 						if !newTweets.isEmpty {
 							weakSelf?.tweets.insert(newTweets, atIndex: 0)
+							weakSelf?.updateDatabase(newTweets)
 						}
 					}
 				}
+			}
+		}
+	}
+	
+	private func updateDatabase(newTweets: [Twitter.Tweet]) {
+		managedObjectContext?.performBlock {
+			for tweet in newTweets {
+				_ = Tweet.tweetWithTwitterInfo(tweet, inTheGivenContext: self.managedObjectContext!, withSearchText: self.searchText!)
+			}
+			do {
+				try self.managedObjectContext?.save()
+			} catch let error {
+				print("Error occured in saving. \(error)")
 			}
 		}
 	}
@@ -93,7 +110,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 	
 	func textFieldShouldReturn(textField: UITextField) -> Bool {
 		textField.resignFirstResponder()
-		if textField.text != "" {
+		if textField.text?.characters.count > 0 {
 			searchText = textField.text
 		}
 		return true

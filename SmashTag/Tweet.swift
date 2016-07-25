@@ -20,6 +20,7 @@ class Tweet: NSManagedObject {
 			return tweetEntry
 		} else if let tweetEntry = NSEntityDescription.insertNewObjectForEntityForName("Tweet", inManagedObjectContext: context) as? Tweet {
 			tweetEntry.id = tweetInfo.id
+			tweetEntry.searchText = searchText
 			let newMentions = tweetEntry.mutableSetValueForKey("mentions")
 			for hashtagMention in tweetInfo.hashtags {
 				if let mentionEntry = Mention.mentionWithSearchText(searchText, withKeyWord: hashtagMention.keyword, inTheGivenContext: context, forSection: "hashtag") {
@@ -36,5 +37,9 @@ class Tweet: NSManagedObject {
 			return nil
 		}
 	}
-
+	
+	// when we delete a tweet, we have to clear all the mentions related to this tweet
+	override func prepareForDeletion() {
+		<#code#>
+	}
 }

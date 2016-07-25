@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class RecentSearchTableViewController: UITableViewController {
 
@@ -29,6 +30,27 @@ class RecentSearchTableViewController: UITableViewController {
 	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
 		SearchHistory().removeAtIndex(indexPath.row)
 		tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+		
+		// remove this entry from database
+		let cell = tableView.cellForRowAtIndexPath(indexPath)
+		let searchText = (cell?.textLabel?.text)!
+		let request = NSFetchRequest(entityName: "Tweet")
+		request.predicate = NSPredicate(format: "searchText = %@", searchText)
+		let managedObjectContext = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
+		managedObjectContext?.performBlockAndWait {
+			
+			if let tweets = (try? managedObjectContext?.executeFetchRequest(request)) as? [Tweet] {
+				for tweet in tweets {
+					managedObjectContext?.deleteObject(tweet)
+				}
+			}
+			do {
+				try managedObjectContext?.save()
+			} catch let error {
+				print("Something is wrong during deletion. Error \(error)")
+			}
+		}
+		
 	}
 	
 	

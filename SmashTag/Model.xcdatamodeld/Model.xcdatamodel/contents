@@ -9,10 +9,11 @@
     </entity>
     <entity name="Tweet" representedClassName=".Tweet" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="searchText" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="mentions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Mention" inverseName="tweet" inverseEntity="Mention" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Tweet" positionX="-90" positionY="-837" width="128" height="73"/>
         <element name="Mention" positionX="108" positionY="-801" width="128" height="118"/>
+        <element name="Tweet" positionX="-90" positionY="-837" width="128" height="90"/>
     </elements>
 </model>

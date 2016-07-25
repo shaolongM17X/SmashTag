@@ -15,6 +15,7 @@ import CoreData
 extension Tweet {
 
     @NSManaged var id: String?
+    @NSManaged var searchText: String?
     @NSManaged var mentions: NSSet?
 
 }

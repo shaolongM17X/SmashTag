@@ -70,6 +70,13 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 				print("Error occured in saving. \(error)")
 			}
 		}
+		printDatabaseStatistics()
+	}
+	
+	private func printDatabaseStatistics() {
+		let tweetCount = self.managedObjectContext!.countForFetchRequest(NSFetchRequest(entityName: "Tweet"), error: nil)
+		let mentionsCount = self.managedObjectContext!.countForFetchRequest(NSFetchRequest(entityName: "Mention"), error: nil)
+		print("There are \(tweetCount) tweets and \(mentionsCount) mentions saved in database")
 	}
 	
     override func viewDidLoad() {

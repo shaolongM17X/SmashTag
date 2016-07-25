@@ -20,15 +20,15 @@ class Tweet: NSManagedObject {
 			return tweetEntry
 		} else if let tweetEntry = NSEntityDescription.insertNewObjectForEntityForName("Tweet", inManagedObjectContext: context) as? Tweet {
 			tweetEntry.id = tweetInfo.id
-			let mentions = mutableSetValueForKey("mentions")
+			let newMentions = tweetEntry.mutableSetValueForKey("mentions")
 			for hashtagMention in tweetInfo.hashtags {
 				if let mentionEntry = Mention.mentionWithSearchText(searchText, withKeyWord: hashtagMention.keyword, inTheGivenContext: context, forSection: "hashtag") {
-					mentions.addObject(mentionEntry)
+					newMentions.addObject(mentionEntry)
 				}
 			}
 			for userMention in tweetInfo.userMentions {
 				if let mentionEntry = Mention.mentionWithSearchText(searchText, withKeyWord: userMention.keyword, inTheGivenContext: context, forSection: "userMention") {
-					mentions.addObject(mentionEntry)
+					newMentions.addObject(mentionEntry)
 				}
 			}
 			return tweetEntry
